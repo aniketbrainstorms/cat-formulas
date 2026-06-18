@@ -1,0 +1,2 @@
+# Harmonic Progression - Properties
+

@@ -1,0 +1,2 @@
+# AM-GM-HM Inequality
+

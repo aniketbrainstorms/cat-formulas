@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAT Formulas — Quant Reference</title>
+<meta name="description" content="A fast, searchable reference for CAT quantitative formulas — Arithmetic, Algebra, Geometry, Number Systems, and Probability.">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
+:root {
+  --canvas:     #FAFAF9;
+  --surface:    #FFFFFF;
+  --surface-2:  #F5F4F1;
+  --surface-3:  #EDECEA;
+
+  --border:     rgba(0,0,0,0.06);
+  --border-med: rgba(0,0,0,0.10);
+  --border-str: rgba(0,0,0,0.16);
+
+  --ink:        #111110;
+  --ink-2:      #37352F;
+  --ink-3:      #787672;
+  --ink-4:      #B0ADA9;
+
+  --accent:     #B45309;
+  --accent-bg:  #FEF3C7;
+  --accent-txt: #92400E;
+
+  --sans:       'Geist', 'Helvetica Neue', system-ui, sans-serif;
+  --mono:       'Geist Mono', 'SF Mono', monospace;
+
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:    cubic-bezier(0.4, 0, 1, 1);
+
+  --sidebar-w:  260px;
+  --header-h:   52px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas:     #111110;
+    --surface:    #191918;
+    --surface-2:  #222120;
+    --surface-3:  #2C2B29;
+    --border:     rgba(255,255,255,0.06);
+    --border-med: rgba(255,255,255,0.09);
+    --border-str: rgba(255,255,255,0.15);
+    --ink:        #F0EEE9;
+    --ink-2:      #C9C6BE;
+    --ink-3:      #7A776F;
+    --ink-4:      #4A4844;
+    --accent:     #D97706;
+    --accent-bg:  #1E1500;
+    --accent-txt: #FCD34D;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }
+}
+
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { font-size:15px; -webkit-text-size-adjust:100%; }
+body {
+  font-family: var(--sans);
+  background: var(--canvas);
+  color: var(--ink);
+  line-height: 1.5;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+a { color:inherit; text-decoration:none; }
+button { font:inherit; cursor:pointer; border:none; background:none; color:inherit; -webkit-tap-highlight-color:transparent; }
+input { font:inherit; color:inherit; }
+
+/* ═══════════════════════════════════════
+   SKIP LINK
+═══════════════════════════════════════ */
+.skip { position:absolute; top:-40px; left:16px; background:var(--ink); color:var(--canvas); padding:6px 14px; font-size:13px; border-radius:4px; z-index:999; transition:top 120ms; }
+.skip:focus { top:8px; }
+
+/* ═══════════════════════════════════════
+   LAYOUT — Shell
+═══════════════════════════════════════ */
+#shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  grid-template-rows: var(--header-h) 1fr;
+  min-height: 100dvh;
+}
+
+/* ═══════════════════════════════════════
+   HEADER
+═══════════════════════════════════════ */
+#header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: var(--header-h);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+/* Logo cell */
+#logo-cell {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px;
+  border-right: 1px solid var(--border);
+  height: 100%;
+}
+
+.logo-mark {
+  width: 26px;
+  height: 26px;
+  background: var(--ink);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-mark svg { color: var(--canvas); }
+
+#wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.1;
+}
+#wm-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+#wm-sub {
+  font-size: 10px;
+  color: var(--ink-4);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Search cell — full remaining width */
+#search-cell {
+  flex: 1;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#search-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+}
+
+#search-input {
+  width: 100%;
+  height: 34px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-med);
+  border-radius: 7px;
+  padding: 0 70px 0 34px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 150ms var(--ease-out), box-shadow 150ms var(--ease-out), background 150ms;
+}
+#search-input::placeholder { color: var(--ink-4); }
+#search-input:focus {
+  background: var(--surface);
+  border-color: var(--border-str);
+  box-shadow: 0 0 0 3px rgba(180,83,9,0.10);
+}
+
+.srch-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-4);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+#kbd-hint {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  pointer-events: none;
+  transition: opacity 140ms;
+}
+#search-input:focus ~ #kbd-hint { opacity: 0; }
+kbd {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-4);
+  background: var(--surface);
+  border: 1px solid var(--border-med);
+  border-radius: 3px;
+  padding: 1px 5px;
+  line-height: 1.6;
+}
+
+/* count badge */
+#formula-count {
+  font-size: 12px;
+  color: var(--ink-4);
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+/* ═══════════════════════════════════════
+   SEARCH DROPDOWN
+═══════════════════════════════════════ */
+#search-results {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0; right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-med);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px -4px rgba(0,0,0,0.10), 0 2px 6px -2px rgba(0,0,0,0.06);
+  overflow: hidden;
+  max-height: 56dvh;
+  overflow-y: auto;
+  z-index: 300;
+  opacity: 0;
+  transform: translateY(-4px) scale(0.985);
+  transform-origin: top;
+  pointer-events: none;
+  transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+#search-results.open { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+
+.sr-group-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  padding: 10px 14px 5px;
+}
+
+.sr-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 60ms;
+  border-top: 1px solid var(--border);
+}
+.sr-item:first-of-type { border-top: none; }
+.sr-item:hover, .sr-item.focused { background: var(--surface-2); }
+
+.sr-icon {
+  width: 26px; height: 26px;
+  flex-shrink: 0;
+  background: var(--surface-3);
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-3);
+}
+.sr-text { flex: 1; min-width: 0; }
+.sr-title { font-size: 13px; font-weight: 500; color: var(--ink); }
+.sr-path  { font-size: 11px; color: var(--ink-3); margin-top: 1px; }
+.sr-kbd   { font-family: var(--mono); font-size: 10px; color: var(--ink-4); }
+
+.sr-empty { padding: 20px 14px; text-align: center; font-size: 13px; color: var(--ink-3); }
+
+mark {
+  background: var(--accent-bg);
+  color: var(--accent-txt);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* ═══════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════ */
+#sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  overflow-y: auto;
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100dvh - var(--header-h));
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-med) transparent;
+}
+
+/* Subject section in sidebar */
+.sb-subject {
+  padding: 18px 0 4px;
+}
+
+.sb-subject-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  cursor: pointer;
+  user-select: none;
+}
+.sb-subject-label:hover { color: var(--ink-3); }
+
+.sb-subject-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+/* Unique dot color per subject */
+[data-subj="Arithmetic"]   .sb-subject-dot { background: #F59E0B; }
+[data-subj="Algebra"]      .sb-subject-dot { background: #3B82F6; }
+[data-subj="Geometry"]     .sb-subject-dot { background: #10B981; }
+[data-subj="Number System"] .sb-subject-dot { background: #8B5CF6; }
+[data-subj="Probability"]  .sb-subject-dot { background: #EF4444; }
+
+/* Chapter group */
+.sb-chapter {
+  margin-bottom: 2px;
+}
+
+.sb-chapter-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px 5px 18px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-3);
+  text-align: left;
+  border-radius: 0;
+  transition: color 120ms, background 80ms;
+  cursor: pointer;
+  position: relative;
+}
+.sb-chapter-btn:hover { color: var(--ink-2); background: var(--surface-2); }
+
+.sb-ch-arrow {
+  flex-shrink: 0;
+  color: var(--ink-4);
+  transition: transform 200ms var(--ease-out), color 120ms;
+}
+.sb-chapter.open .sb-ch-arrow { transform: rotate(90deg); color: var(--ink-3); }
+
+.sb-ch-name { flex: 1; }
+.sb-ch-count {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-4);
+}
+
+/* Formula items */
+.sb-chapter-items {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms var(--ease-out);
+}
+.sb-chapter.open .sb-chapter-items { grid-template-rows: 1fr; }
+.sb-items-inner { overflow: hidden; }
+
+.sb-formula-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px 5px 32px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  text-align: left;
+  transition: color 100ms, background 80ms;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+}
+.sb-formula-btn:hover { color: var(--ink-2); background: var(--surface-2); }
+.sb-formula-btn.active {
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-left-color: var(--accent);
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   MAIN CONTENT
+═══════════════════════════════════════ */
+#main {
+  overflow-y: auto;
+  position: relative;
+  min-height: calc(100dvh - var(--header-h));
+}
+
+/* ═══════════════════════════════════════
+   HOME SCREEN
+═══════════════════════════════════════ */
+#welcome {
+  padding: 28px 32px 60px;
+  max-width: 720px;
+}
+
+/* Section header row */
+.home-section {
+  margin-bottom: 32px;
+}
+
+.home-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.home-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.home-section-title svg { color: var(--ink-4); }
+
+.home-section-action {
+  font-size: 11.5px;
+  color: var(--ink-4);
+  padding: 2px 7px;
+  border-radius: 4px;
+  transition: color 100ms, background 100ms;
+  cursor: pointer;
+}
+.home-section-action:hover { color: var(--ink-2); background: var(--surface-2); }
+
+/* Formula list rows — shared by recents + bookmarks */
+.home-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.home-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 70ms;
+}
+.home-row:hover { background: var(--surface-2); }
+.home-row:active { background: var(--surface-3); transform: scale(0.995); }
+
+.home-row-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.home-row-text { flex: 1; min-width: 0; }
+.home-row-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+.home-row-meta {
+  font-size: 11px;
+  color: var(--ink-4);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-row-remove {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 4px;
+  color: var(--ink-4);
+  opacity: 0;
+  transition: opacity 100ms, background 100ms, color 100ms;
+}
+.home-row:hover .home-row-remove { opacity: 1; }
+.home-row-remove:hover { background: var(--surface-3); color: var(--ink-2); }
+
+/* Empty state for panels */
+.home-empty {
+  padding: 18px 10px;
+  font-size: 13px;
+  color: var(--ink-4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.home-empty svg { flex-shrink: 0; color: var(--ink-4); opacity: 0.5; }
+
+/* Subject browse grid — shown when both panels empty */
+#subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.subj-card {
+  background: var(--surface);
+  border: 1px solid var(--border-med);
+  border-radius: 9px;
+  padding: 13px 14px;
+  cursor: pointer;
+  transition: border-color 120ms, background 100ms, transform 120ms var(--ease-out);
+}
+.subj-card:hover { border-color: var(--border-str); background: var(--surface-2); transform: translateY(-1px); }
+.subj-card:active { transform: scale(0.98); }
+
+.subj-card-dot { width: 7px; height: 7px; border-radius: 50%; margin-bottom: 10px; }
+.subj-card-name { font-size: 12.5px; font-weight: 500; color: var(--ink-2); }
+.subj-card-count { font-size: 11px; color: var(--ink-4); margin-top: 2px; font-family: var(--mono); }
+
+/* ═══════════════════════════════════════
+   FORMULA PAGE
+═══════════════════════════════════════ */
+#formula-page {
+  display: none;
+  padding: 0;
+}
+#formula-page.visible {
+  display: block;
+  animation: page-in 200ms var(--ease-out) both;
+}
+@keyframes page-in {
+  from { opacity:0; transform:translateY(6px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* Breadcrumb bar */
+#breadcrumb-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 28px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--ink-4);
+  position: sticky;
+  top: 0;
+  background: color-mix(in srgb, var(--canvas) 90%, transparent);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+/* Bookmark button — sits at right of breadcrumb bar */
+#bookmark-btn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--ink-4);
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition: color 120ms, background 100ms, border-color 100ms;
+}
+#bookmark-btn:hover { color: var(--ink-2); background: var(--surface-2); border-color: var(--border); }
+#bookmark-btn.bookmarked {
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-color: rgba(180,83,9,0.15);
+}
+#bookmark-btn svg { transition: transform 200ms var(--ease-out); }
+#bookmark-btn.bookmarked svg { transform: scale(1.15); }
+.bc-seg {
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 100ms, background 100ms;
+}
+.bc-seg:hover { color: var(--ink-2); background: var(--surface-2); }
+.bc-sep { color: var(--border-str); }
+.bc-current { color: var(--ink-2); font-weight: 500; padding: 2px 0; }
+
+/* Prev / Next nav */
+#formula-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 28px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: color 100ms, border-color 100ms, background 100ms;
+}
+.nav-btn:hover { color: var(--ink); border-color: var(--border-med); background: var(--surface-2); }
+.nav-btn:disabled { opacity: 0.35; pointer-events: none; }
+.nav-btn svg { flex-shrink:0; }
+
+.nav-position {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-4);
+}
+
+/* Content area */
+#formula-content-wrap {
+  padding: 28px 36px 100px;
+  max-width: 700px;
+}
+
+#formula-content { font-size:14px; line-height:1.75; color:var(--ink-2); }
+
+#formula-content h1 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+
+#formula-content h2 {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-4);
+  margin: 32px 0 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+#formula-content h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 18px 0 6px;
+}
+
+#formula-content p { margin-bottom: 10px; }
+#formula-content ul, #formula-content ol { margin: 4px 0 12px 18px; }
+#formula-content li { margin-bottom: 4px; }
+#formula-content strong { font-weight: 600; color: var(--ink); }
+
+#formula-content code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--ink);
+}
+
+#formula-content pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border-med);
+  border-radius: 8px;
+  padding: 14px 18px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+#formula-content pre code { background:none; border:none; padding:0; font-size:13px; }
+#formula-content hr { border:none; border-top:1px solid var(--border); margin:26px 0; }
+
+/* Math */
+.math-block {
+  background: var(--surface);
+  border: 1px solid var(--border-med);
+  border-radius: 8px;
+  padding: 2px 18px;
+  margin: 14px 0;
+  overflow-x: auto;
+}
+#formula-content .katex-display { overflow-x:auto; padding:14px 0; margin:0; }
+#formula-content .katex { font-size:1.05em; }
+
+/* Empty / coming soon */
+.empty-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  background: var(--surface-2);
+  border: 1px dashed var(--border-med);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 8px;
+}
+
+/* Skeleton */
+.skel-page { padding: 28px 36px; max-width: 700px; }
+.skel-wrap { display:flex; flex-direction:column; gap:10px; }
+.skel {
+  background: var(--surface-3);
+  border-radius: 5px;
+  animation: skel-pulse 1.5s ease-in-out infinite alternate;
+}
+@keyframes skel-pulse { from{opacity:.5} to{opacity:1} }
+
+/* ═══════════════════════════════════════
+   MOBILE
+═══════════════════════════════════════ */
+@media (max-width: 720px) {
+  :root { --sidebar-w: 0px; }
+
+  #shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--header-h) 1fr;
+  }
+
+  #logo-cell { display:none; }
+
+  #sidebar {
+    display: none;
+    position: fixed;
+    left: 0; top: var(--header-h);
+    width: 280px;
+    height: calc(100dvh - var(--header-h));
+    z-index: 150;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.12);
+  }
+  #sidebar.mobile-open { display: block; }
+
+  #mobile-menu-btn { display: flex; }
+
+  #formula-content-wrap { padding: 18px 18px 80px; }
+  #formula-nav { padding: 8px 16px; }
+  #breadcrumb-bar { padding: 8px 16px; }
+
+  #welcome { padding: 20px 16px 60px; }
+  #subject-grid { grid-template-columns: repeat(2, 1fr); }
+
+  #formula-count { display:none; }
+}
+
+/* Mobile menu toggle — hidden on desktop */
+#mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  border-radius: 7px;
+  color: var(--ink-3);
+  flex-shrink: 0;
+  transition: background 100ms, color 100ms;
+}
+#mobile-menu-btn:hover { background: var(--surface-2); color: var(--ink); }
+
+#mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 140;
+}
+#mobile-overlay.visible { display: block; }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div id="shell">
+
+  <!-- ═══ HEADER ══════════════════════════════════ -->
+  <header id="header">
+    <!-- Logo (sidebar-width column) -->
+    <div id="logo-cell">
+      <div class="logo-mark">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 2 L7 12 L12 2"/>
+          <line x1="3.5" y1="7" x2="10.5" y2="7"/>
+        </svg>
+      </div>
+      <div id="wordmark">
+        <span id="wm-title">CAT Formulas</span>
+        <span id="wm-sub">Quant Reference</span>
+      </div>
+    </div>
+
+    <!-- Search bar + meta -->
+    <div id="search-cell">
+      <button id="mobile-menu-btn" aria-label="Toggle sidebar">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="2" y1="4" x2="14" y2="4"/>
+          <line x1="2" y1="8" x2="14" y2="8"/>
+          <line x1="2" y1="12" x2="14" y2="12"/>
+        </svg>
+      </button>
+
+      <div id="search-wrap">
+        <span class="srch-icon">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <circle cx="6.5" cy="6.5" r="4.5"/><line x1="10.2" y1="10.2" x2="14.5" y2="14.5"/>
+          </svg>
+        </span>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search 127 formulas…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search formulas"
+          aria-autocomplete="list"
+          aria-controls="search-results"
+        >
+        <div id="kbd-hint"><kbd>/</kbd></div>
+        <div id="search-results" role="listbox"></div>
+      </div>
+
+      <span id="formula-count">127 formulas across 5 subjects</span>
+    </div>
+  </header>
+
+  <!-- ═══ SIDEBAR ═════════════════════════════════ -->
+  <nav id="sidebar" aria-label="Formula navigation"></nav>
+
+  <!-- ═══ MAIN ════════════════════════════════════ -->
+  <main id="main">
+
+    <!-- Home screen -->
+    <div id="welcome">
+
+      <!-- Recents -->
+      <div class="home-section" id="section-recents">
+        <div class="home-section-header">
+          <span class="home-section-title">
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5.5"/><polyline points="7 4 7 7 9 8.5"/></svg>
+            Recently viewed
+          </span>
+          <span class="home-section-action" id="clear-recents-btn">Clear</span>
+        </div>
+        <div class="home-list" id="recents-list"></div>
+      </div>
+
+      <!-- Bookmarks -->
+      <div class="home-section" id="section-bookmarks">
+        <div class="home-section-header">
+          <span class="home-section-title">
+            <svg width="11" height="13" viewBox="0 0 11 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1h9v11L5.5 9 1 12V1z"/></svg>
+            Bookmarks
+          </span>
+          <span class="home-section-action" id="clear-bookmarks-btn">Clear all</span>
+        </div>
+        <div class="home-list" id="bookmarks-list"></div>
+      </div>
+
+      <!-- Browse subjects — shown when both panels are empty -->
+      <div class="home-section" id="section-browse" style="display:none">
+        <div class="home-section-header">
+          <span class="home-section-title">
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="8" y="1" width="5" height="5" rx="1"/><rect x="1" y="8" width="5" height="5" rx="1"/><rect x="8" y="8" width="5" height="5" rx="1"/></svg>
+            Browse subjects
+          </span>
+        </div>
+        <div id="subject-grid"></div>
+      </div>
+
+    </div>
+
+    <!-- Formula page -->
+    <div id="formula-page" role="article">
+      <div id="breadcrumb-bar" aria-label="You are here">
+        <span id="bc-content"></span>
+        <button id="bookmark-btn" aria-label="Bookmark this formula">
+          <svg id="bm-icon" width="12" height="13" viewBox="0 0 11 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1h9v11L5.5 9 1 12V1z"/></svg>
+          <span id="bm-label">Bookmark</span>
+        </button>
+      </div>
+
+      <div id="formula-nav">
+        <button class="nav-btn" id="prev-btn" aria-label="Previous formula">
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 2 4 7 8 12"/></svg>
+          Previous
+        </button>
+        <span class="nav-position" id="nav-pos"></span>
+        <button class="nav-btn" id="next-btn" aria-label="Next formula">
+          Next
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 2 10 7 6 12"/></svg>
+        </button>
+      </div>
+
+      <div id="formula-content-wrap">
+        <div id="formula-content"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div id="mobile-overlay"></div>
+
+<script>
+/* ══════════════════════════════════════
+   DATA — loaded from manifest.json
+══════════════════════════════════════ */
+const SUBJECT_COLORS = {
+  "Arithmetic":    "#F59E0B",
+  "Algebra":       "#3B82F6",
+  "Geometry":      "#10B981",
+  "Number System": "#8B5CF6",
+  "Probability":   "#EF4444"
+};
+
+// Populated after manifest loads
+let TREE  = {};
+let INDEX = [];
+
+function buildIndex() {
+  INDEX = [];
+  for (const [subj, chs] of Object.entries(TREE))
+    for (const [chap, fms] of Object.entries(chs))
+      for (const f of fms)
+        INDEX.push({ subject: subj, chapter: chap, title: f,
+          path: `${subj}/${chap}/${f}.md` });
+}
+
+function updateCountBadge(total) {
+  const subjects = Object.keys(TREE).length;
+  document.getElementById("formula-count").textContent =
+    `${total} formulas across ${subjects} subjects`;
+  document.getElementById("search-input").placeholder =
+    `Search ${total} formulas…`;
+}
+
+/* ══════════════════════════════════════
+   STATE
+══════════════════════════════════════ */
+let activeFormula = null;
+let openChapters  = new Set();
+
+/* ══════════════════════════════════════
+   STORAGE — recents + bookmarks
+══════════════════════════════════════ */
+const RECENTS_KEY   = "cat_recents_v1";
+const BOOKMARKS_KEY = "cat_bookmarks_v1";
+const RECENTS_MAX   = 8;
+
+function storageGet(key) {
+  try { return JSON.parse(localStorage.getItem(key) || "[]"); } catch { return []; }
+}
+function storageSet(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
+}
+
+function getRecents()   { return storageGet(RECENTS_KEY); }
+function getBookmarks() { return storageGet(BOOKMARKS_KEY); }
+
+function pushRecent(item) {
+  let list = getRecents().filter(r => r.path !== item.path);
+  list.unshift({ subject: item.subject, chapter: item.chapter, title: item.title, path: item.path });
+  if (list.length > RECENTS_MAX) list = list.slice(0, RECENTS_MAX);
+  storageSet(RECENTS_KEY, list);
+}
+
+function isBookmarked(item) {
+  return getBookmarks().some(b => b.path === item.path);
+}
+
+function toggleBookmark(item) {
+  let list = getBookmarks();
+  if (isBookmarked(item)) {
+    list = list.filter(b => b.path !== item.path);
+  } else {
+    list.push({ subject: item.subject, chapter: item.chapter, title: item.title, path: item.path });
+  }
+  storageSet(BOOKMARKS_KEY, list);
+  updateBookmarkBtn();
+  renderHome();
+}
+
+/* ══════════════════════════════════════
+   ELEMENTS
+══════════════════════════════════════ */
+const $sidebar       = document.getElementById("sidebar");
+const $main          = document.getElementById("main");
+const $welcome       = document.getElementById("welcome");
+const $page          = document.getElementById("formula-page");
+const $content       = document.getElementById("formula-content");
+const $bcContent     = document.getElementById("bc-content");
+const $bookmarkBtn   = document.getElementById("bookmark-btn");
+const $bmIcon        = document.getElementById("bm-icon");
+const $bmLabel       = document.getElementById("bm-label");
+const $prevBtn       = document.getElementById("prev-btn");
+const $nextBtn       = document.getElementById("next-btn");
+const $navPos        = document.getElementById("nav-pos");
+const $srch          = document.getElementById("search-input");
+const $res           = document.getElementById("search-results");
+const $mBtn          = document.getElementById("mobile-menu-btn");
+const $mOverlay      = document.getElementById("mobile-overlay");
+const $recentsList   = document.getElementById("recents-list");
+const $bookmarksList = document.getElementById("bookmarks-list");
+const $subjectGrid   = document.getElementById("subject-grid");
+const $sectionBrowse = document.getElementById("section-browse");
+const $clearRecents  = document.getElementById("clear-recents-btn");
+const $clearBookmarks= document.getElementById("clear-bookmarks-btn");
+
+/* ══════════════════════════════════════
+   HOME SCREEN RENDER
+══════════════════════════════════════ */
+const BOOKMARK_FILLED = `<path d="M1 1h9v11L5.5 9 1 12V1z" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>`;
+const BOOKMARK_OUTLINE = `<path d="M1 1h9v11L5.5 9 1 12V1z"/>`;
+
+function homeRow(item, onRemove) {
+  const color = SUBJECT_COLORS[item.subject] || "#999";
+  const div = document.createElement("div");
+  div.className = "home-row";
+  div.innerHTML = `
+    <span class="home-row-dot" style="background:${color}"></span>
+    <span class="home-row-text">
+      <div class="home-row-title">${esc(item.title)}</div>
+      <div class="home-row-meta">${esc(item.subject)} · ${esc(item.chapter)}</div>
+    </span>
+    <button class="home-row-remove" aria-label="Remove" title="Remove">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="2" x2="10" y2="10"/><line x1="10" y1="2" x2="2" y2="10"/></svg>
+    </button>`;
+  div.addEventListener("click", e => {
+    if (e.target.closest(".home-row-remove")) { e.stopPropagation(); onRemove(); return; }
+    loadFormula(item);
+  });
+  return div;
+}
+
+function renderHome() {
+  const recents   = getRecents();
+  const bookmarks = getBookmarks();
+  const bothEmpty = recents.length === 0 && bookmarks.length === 0;
+
+  /* Recents */
+  $recentsList.innerHTML = "";
+  if (recents.length === 0) {
+    $recentsList.innerHTML = `<div class="home-empty">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="5.5"/><polyline points="7 4 7 7 9 8.5"/></svg>
+      Formulas you open will appear here
+    </div>`;
+  } else {
+    recents.forEach((item, i) => {
+      $recentsList.appendChild(homeRow(item, () => {
+        const list = getRecents().filter(r => r.path !== item.path);
+        storageSet(RECENTS_KEY, list);
+        renderHome();
+      }));
+    });
+  }
+  $clearRecents.style.display = recents.length ? "" : "none";
+
+  /* Bookmarks */
+  $bookmarksList.innerHTML = "";
+  if (bookmarks.length === 0) {
+    $bookmarksList.innerHTML = `<div class="home-empty">
+      <svg width="11" height="13" viewBox="0 0 11 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">${BOOKMARK_OUTLINE}</svg>
+      Open a formula and tap Bookmark to save it here
+    </div>`;
+  } else {
+    bookmarks.forEach(item => {
+      $bookmarksList.appendChild(homeRow(item, () => {
+        storageSet(BOOKMARKS_KEY, getBookmarks().filter(b => b.path !== item.path));
+        renderHome();
+      }));
+    });
+  }
+  $clearBookmarks.style.display = bookmarks.length ? "" : "none";
+
+  /* Browse subjects — only when both empty */
+  $sectionBrowse.style.display = bothEmpty ? "" : "none";
+  if (bothEmpty) buildSubjectGrid();
+}
+
+function buildSubjectGrid() {
+  $subjectGrid.innerHTML = "";
+  for (const [subj, chs] of Object.entries(TREE)) {
+    let n = 0;
+    for (const fms of Object.values(chs)) n += fms.length;
+    const firstChap = Object.keys(chs)[0];
+    const col = SUBJECT_COLORS[subj];
+    const card = document.createElement("div");
+    card.className = "subj-card";
+    card.innerHTML = `
+      <div class="subj-card-dot" style="background:${col}"></div>
+      <div class="subj-card-name">${esc(subj)}</div>
+      <div class="subj-card-count">${n} formulas</div>`;
+    card.addEventListener("click", () => jumpToSubject(subj, firstChap));
+    $subjectGrid.appendChild(card);
+  }
+}
+
+function jumpToSubject(subj, chap) {
+  const key = `${subj}::${chap}`;
+  openChapters.add(key);
+  buildSidebar();
+  const el = $sidebar.querySelector(`[data-subj="${subj}"]`);
+  if (el) el.scrollIntoView({ block: "start", behavior: "smooth" });
+}
+
+/* Clear handlers */
+$clearRecents.addEventListener("click", () => { storageSet(RECENTS_KEY, []); renderHome(); });
+$clearBookmarks.addEventListener("click", () => { storageSet(BOOKMARKS_KEY, []); renderHome(); updateBookmarkBtn(); });
+
+/* ══════════════════════════════════════
+   SIDEBAR BUILD
+══════════════════════════════════════ */
+function buildSidebar() {
+  $sidebar.innerHTML = "";
+  for (const [subj, chs] of Object.entries(TREE)) {
+    const sec = document.createElement("div");
+    sec.className = "sb-subject";
+    sec.dataset.subj = subj;
+
+    const lbl = document.createElement("div");
+    lbl.className = "sb-subject-label";
+    lbl.innerHTML = `<span class="sb-subject-dot"></span>${esc(subj)}`;
+    sec.appendChild(lbl);
+
+    for (const [chap, fms] of Object.entries(chs)) {
+      const key = `${subj}::${chap}`;
+      const isOpen = openChapters.has(key);
+
+      const chDiv = document.createElement("div");
+      chDiv.className = "sb-chapter" + (isOpen ? " open" : "");
+      chDiv.dataset.key = key;
+
+      const chBtn = document.createElement("button");
+      chBtn.className = "sb-chapter-btn";
+      chBtn.innerHTML = `
+        <svg class="sb-ch-arrow" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 2 8 6 4 10"/></svg>
+        <span class="sb-ch-name">${esc(chap)}</span>
+        <span class="sb-ch-count">${fms.length}</span>`;
+      chBtn.addEventListener("click", () => {
+        if (openChapters.has(key)) openChapters.delete(key);
+        else openChapters.add(key);
+        buildSidebar();
+      });
+
+      const itemsWrap = document.createElement("div");
+      itemsWrap.className = "sb-chapter-items";
+      const inner = document.createElement("div");
+      inner.className = "sb-items-inner";
+
+      fms.forEach(f => {
+        const btn = document.createElement("button");
+        const isActive = activeFormula && activeFormula.title === f && activeFormula.chapter === chap;
+        btn.className = "sb-formula-btn" + (isActive ? " active" : "");
+        btn.textContent = f;
+        btn.title = f;
+        btn.addEventListener("click", () => {
+          closeMobile();
+          loadFormula({ subject: subj, chapter: chap, title: f,
+            path: `${subj}/${chap}/${f}.md` });
+        });
+        inner.appendChild(btn);
+      });
+
+      itemsWrap.appendChild(inner);
+      chDiv.appendChild(chBtn);
+      chDiv.appendChild(itemsWrap);
+      sec.appendChild(chDiv);
+    }
+    $sidebar.appendChild(sec);
+  }
+}
+
+/* ══════════════════════════════════════
+   WELCOME GRID
+══════════════════════════════════════ */
+function buildWelcome() {
+  let totalCount = {};
+  for (const [s, chs] of Object.entries(TREE)) {
+    let n = 0;
+    for (const fms of Object.values(chs)) n += fms.length;
+    totalCount[s] = n;
+  }
+
+  $wgrid.innerHTML = Object.entries(TREE).map(([subj]) => {
+    const col = SUBJECT_COLORS[subj];
+    const count = totalCount[subj];
+    const firstChap = Object.keys(TREE[subj])[0];
+    return `<div class="welcome-card" onclick="jumpToSubject('${esc(subj)}','${esc(firstChap)}')">
+      <div class="wc-dot" style="background:${col}"></div>
+      <div class="wc-name">${esc(subj)}</div>
+      <div class="wc-count">${count} formulas</div>
+    </div>`;
+  }).join("");
+}
+
+function jumpToSubject(subj, chap) {
+  const key = `${subj}::${chap}`;
+  openChapters.add(key);
+  buildSidebar();
+  // scroll sidebar to subject
+  const el = $sidebar.querySelector(`[data-subj="${subj}"]`);
+  if (el) el.scrollIntoView({ block: "start", behavior: "smooth" });
+}
+
+/* ══════════════════════════════════════
+   FORMULA LOAD
+══════════════════════════════════════ */
+async function loadFormula(item) {
+  activeFormula = item;
+
+  // Track in recents
+  pushRecent(item);
+
+  // Auto-open chapter in sidebar
+  openChapters.add(`${item.subject}::${item.chapter}`);
+  buildSidebar();
+
+  // Show skeleton
+  $welcome.style.display = "none";
+  $page.classList.remove("visible");
+  void $page.offsetWidth;
+  $page.style.display = "block";
+  $page.classList.add("visible");
+
+  $content.innerHTML = `
+    <div class="skel-wrap">
+      <div class="skel" style="height:24px;width:55%;margin-bottom:4px"></div>
+      <div class="skel" style="height:13px;width:85%;animation-delay:.08s"></div>
+      <div class="skel" style="height:13px;width:70%;animation-delay:.16s"></div>
+      <div class="skel" style="height:60px;width:100%;margin-top:10px;animation-delay:.12s;border-radius:8px"></div>
+      <div class="skel" style="height:13px;width:78%;animation-delay:.22s"></div>
+    </div>`;
+
+  // Breadcrumb
+  $bcContent.innerHTML = `
+    <span class="bc-seg" onclick="showWelcome()">${esc(item.subject)}</span>
+    <span class="bc-sep">/</span>
+    <span class="bc-seg" onclick="jumpToSubject('${esc(item.subject)}','${esc(item.chapter)}')">${esc(item.chapter)}</span>
+    <span class="bc-sep">/</span>
+    <span class="bc-current">${esc(item.title)}</span>`;
+
+  updateBookmarkBtn();
+
+  // Prev/Next within chapter
+  const chFormulas = TREE[item.subject][item.chapter];
+  const idx = chFormulas.indexOf(item.title);
+  $prevBtn.disabled = idx <= 0;
+  $nextBtn.disabled = idx >= chFormulas.length - 1;
+  $navPos.textContent = `${idx + 1} of ${chFormulas.length}`;
+
+  $prevBtn.onclick = () => {
+    if (idx > 0) loadFormula({ subject:item.subject, chapter:item.chapter, title:chFormulas[idx-1], path:`${item.subject}/${item.chapter}/${chFormulas[idx-1]}.md` });
+  };
+  $nextBtn.onclick = () => {
+    if (idx < chFormulas.length - 1) loadFormula({ subject:item.subject, chapter:item.chapter, title:chFormulas[idx+1], path:`${item.subject}/${item.chapter}/${chFormulas[idx+1]}.md` });
+  };
+
+  $main.scrollTo({ top: 0, behavior: "instant" });
+
+  // Fetch content
+  try {
+    const r = await fetch(item.path);
+    if (!r.ok) throw new Error();
+    renderMd(await r.text());
+  } catch {
+    $content.innerHTML = `
+      <h1>${esc(item.title)}</h1>
+      <p style="color:var(--ink-3);font-size:13px;margin-bottom:0">This formula sheet is empty — content will be added soon.</p>
+      <div class="empty-badge">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><line x1="8" y1="5" x2="8" y2="8.5"/><circle cx="8" cy="11" r=".6" fill="currentColor"/></svg>
+        Formula content coming soon
+      </div>`;
+  }
+}
+
+function updateBookmarkBtn() {
+  if (!activeFormula) return;
+  const bm = isBookmarked(activeFormula);
+  $bookmarkBtn.classList.toggle("bookmarked", bm);
+  $bmIcon.innerHTML = bm ? BOOKMARK_FILLED : BOOKMARK_OUTLINE;
+  $bmLabel.textContent = bm ? "Bookmarked" : "Bookmark";
+}
+
+$bookmarkBtn.addEventListener("click", () => {
+  if (activeFormula) toggleBookmark(activeFormula);
+});
+
+function renderMd(md) {
+  $content.innerHTML = marked.parse(md, { gfm: true, breaks: false });
+  $content.querySelectorAll(".katex-display").forEach(el => {
+    const w = document.createElement("div");
+    w.className = "math-block";
+    el.parentNode.insertBefore(w, el);
+    w.appendChild(el);
+  });
+  if (window.renderMathInElement) {
+    renderMathInElement($content, {
+      delimiters: [
+        { left:"$$",right:"$$",display:true },
+        { left:"$",right:"$",display:false },
+        { left:"\\[",right:"\\]",display:true },
+        { left:"\\(",right:"\\)",display:false }
+      ],
+      throwOnError: false
+    });
+  }
+}
+
+function showWelcome() {
+  activeFormula = null;
+  $page.classList.remove("visible");
+  $page.style.display = "none";
+  $welcome.style.display = "";
+  renderHome();
+  buildSidebar();
+}
+
+/* ══════════════════════════════════════
+   SEARCH
+══════════════════════════════════════ */
+let selectedIdx = -1;
+let currentHits = [];
+
+$srch.addEventListener("input", debounce(doSearch, 80));
+$srch.addEventListener("focus", () => { if ($srch.value.trim()) doSearch(); });
+$srch.addEventListener("keydown", e => {
+  const items = $res.querySelectorAll(".sr-item");
+  if (e.key === "ArrowDown") { e.preventDefault(); selectedIdx = Math.min(selectedIdx+1, items.length-1); highlightSr(items); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); selectedIdx = Math.max(selectedIdx-1, -1); highlightSr(items); }
+  else if (e.key === "Enter" && selectedIdx >= 0 && currentHits[selectedIdx]) {
+    pick(currentHits[selectedIdx]);
+  } else if (e.key === "Escape") { closeSearch(); $srch.blur(); }
+});
+
+function highlightSr(items) {
+  items.forEach((el, i) => el.classList.toggle("focused", i === selectedIdx));
+  if (selectedIdx >= 0) items[selectedIdx]?.scrollIntoView({ block: "nearest" });
+}
+
+document.addEventListener("click", e => { if (!e.target.closest("#search-wrap")) closeSearch(); });
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && document.activeElement !== $srch && !["INPUT","TEXTAREA"].includes(document.activeElement.tagName)) {
+    e.preventDefault(); $srch.focus(); $srch.select();
+  }
+});
+
+function doSearch() {
+  const q = $srch.value.trim().toLowerCase();
+  selectedIdx = -1;
+  if (!q) { closeSearch(); return; }
+
+  currentHits = INDEX.filter(x =>
+    x.title.toLowerCase().includes(q) ||
+    x.chapter.toLowerCase().includes(q) ||
+    x.subject.toLowerCase().includes(q)
+  ).slice(0, 12);
+
+  if (!currentHits.length) {
+    $res.innerHTML = `<div class="sr-empty">No results for "<b>${esc(q)}</b>"</div>`;
+    $res.classList.add("open");
+    return;
+  }
+
+  // Group by subject
+  const grouped = {};
+  for (const h of currentHits) {
+    if (!grouped[h.subject]) grouped[h.subject] = [];
+    grouped[h.subject].push(h);
+  }
+
+  let html = "";
+  let globalIdx = 0;
+  for (const [subj, hits] of Object.entries(grouped)) {
+    const col = SUBJECT_COLORS[subj];
+    html += `<div class="sr-group-label" style="border-top:${html?'1px solid var(--border)':'none'};padding-top:${html?'10px':'8px'}">${esc(subj)}</div>`;
+    for (const h of hits) {
+      html += `<div class="sr-item" role="option" tabindex="-1" data-gi="${globalIdx}">
+        <span class="sr-icon"><svg width="11" height="13" viewBox="0 0 11 13" fill="none" stroke="${col}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x=".75" y=".75" width="9.5" height="11.5" rx="1.5"/><line x1="2.5" y1="4" x2="8.5" y2="4"/><line x1="2.5" y1="6.5" x2="8.5" y2="6.5"/><line x1="2.5" y1="9" x2="6" y2="9"/></svg></span>
+        <span class="sr-text">
+          <div class="sr-title">${mark(h.title, q)}</div>
+          <div class="sr-path">${esc(h.chapter)}</div>
+        </span>
+        <span class="sr-kbd">↵</span>
+      </div>`;
+      globalIdx++;
+    }
+  }
+
+  $res.innerHTML = html;
+  $res.querySelectorAll(".sr-item").forEach((el, i) => {
+    el.addEventListener("click", () => pick(currentHits[i]));
+    el.addEventListener("mouseenter", () => { selectedIdx = i; highlightSr($res.querySelectorAll(".sr-item")); });
+  });
+  $res.classList.add("open");
+}
+
+function pick(item) {
+  closeSearch();
+  $srch.value = "";
+  loadFormula(item);
+}
+
+function closeSearch() {
+  $res.classList.remove("open");
+  currentHits = [];
+  selectedIdx = -1;
+}
+
+function mark(text, q) {
+  const i = text.toLowerCase().indexOf(q);
+  if (i < 0) return esc(text);
+  return esc(text.slice(0,i)) + `<mark>${esc(text.slice(i,i+q.length))}</mark>` + esc(text.slice(i+q.length));
+}
+
+/* ══════════════════════════════════════
+   MOBILE SIDEBAR
+══════════════════════════════════════ */
+$mBtn.addEventListener("click", () => {
+  const open = $sidebar.classList.toggle("mobile-open");
+  $mOverlay.classList.toggle("visible", open);
+});
+$mOverlay.addEventListener("click", closeMobile);
+
+function closeMobile() {
+  $sidebar.classList.remove("mobile-open");
+  $mOverlay.classList.remove("visible");
+}
+
+/* ══════════════════════════════════════
+   KEYBOARD NAVIGATION
+══════════════════════════════════════ */
+document.addEventListener("keydown", e => {
+  if (!activeFormula) return;
+  if (["INPUT","TEXTAREA"].includes(document.activeElement.tagName)) return;
+  if (e.key === "ArrowRight" || e.key === "j") $nextBtn.click();
+  if (e.key === "ArrowLeft"  || e.key === "k") $prevBtn.click();
+  if (e.key === "Escape" || e.key === "Backspace") showWelcome();
+});
+
+/* ══════════════════════════════════════
+   UTILS
+══════════════════════════════════════ */
+function esc(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function debounce(fn, ms) {
+  let t;
+  return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
+}
+
+/* ══════════════════════════════════════
+   BOOT — fetch manifest then init
+══════════════════════════════════════ */
+async function boot() {
+  // Show a subtle loading state in the welcome area
+  document.getElementById("recents-list").innerHTML =
+    `<div class="home-empty" style="opacity:.5">Loading formulas…</div>`;
+
+  try {
+    const res = await fetch("manifest.json");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const manifest = await res.json();
+    TREE = manifest.tree;
+    buildIndex();
+    updateCountBadge(manifest.totalFormulas);
+  } catch (err) {
+    console.error("Could not load manifest.json:", err);
+    document.getElementById("recents-list").innerHTML =
+      `<div class="home-empty" style="color:var(--accent)">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><line x1="8" y1="5" x2="8" y2="8.5"/><circle cx="8" cy="11" r=".6" fill="currentColor"/></svg>
+        Could not load manifest.json — run <code>node scripts/generate-manifest.js</code> first
+      </div>`;
+    return;
+  }
+
+  buildSidebar();
+  renderHome();
+}
+
+boot();
+</script>
+</body>
+</html>

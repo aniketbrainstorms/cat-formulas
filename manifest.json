@@ -1,0 +1,174 @@
+{
+  "generated": "2026-06-18T21:26:07.453Z",
+  "totalFormulas": 126,
+  "tree": {
+    "Algebra": {
+      "Functions, Graphs & Statistics": [
+        "Algebra Identities",
+        "Composite Functions",
+        "Domain & Range"
+      ],
+      "Inequalities": [
+        "Linear & Quadratic Inequalities",
+        "Modulus Properties",
+        "Properties of Inequalities",
+        "Sign Change - Polynomial Inequality"
+      ],
+      "Linear Equations": [
+        "Chicken McNugget Theorem",
+        "Linear Equation - Sum of Reciprocal Variables",
+        "Linear Equation Slope",
+        "Linear Equation in 3 Variables - When Two Equations are Same",
+        "Linear Equations - Integral Solutions",
+        "Number of Solutions - 3 Variable Equations (Determinant Method)",
+        "Number of Solutions - Linear Equations",
+        "Solving Linear Equations - 2 Variables",
+        "Solving Linear Equations - 3 Variables",
+        "Special Linear Equations"
+      ],
+      "Logarithms, Surds & Indices": [
+        "Decimal into Fraction",
+        "Logarithmic Inequality",
+        "Properties of Logarithm"
+      ],
+      "Progressions & Series": [
+        "A.G.P. Properties",
+        "A.P. - Formulas & Properties",
+        "AM-GM-HM Inequality",
+        "Arithmetic Mean",
+        "Common Terms in Two APs",
+        "G.P. - Formulas & Properties",
+        "Geometric Mean",
+        "Harmonic Mean",
+        "Harmonic Progression - Properties",
+        "Second Order AP",
+        "Sum of Special Series till 'n' Terms"
+      ],
+      "Quadratic Equations": [
+        "Deriving New Equations from Modified Roots",
+        "Discriminant Formulas",
+        "Polynomial Equation - Roots Formulas",
+        "Quadratic - Extreme Values",
+        "Quadratic Roots Formulas",
+        "Signs of the Roots"
+      ]
+    },
+    "Arithmetic": {
+      "Averages, Ratio & Proportion": [
+        "Averages",
+        "Operations on Ratios",
+        "Percentage Change",
+        "Proportionality",
+        "Ratio Properties",
+        "Successive Percentage Change"
+      ],
+      "Interest": [
+        "CI & SI - Difference Formulas",
+        "CI - Compounding Non-Annually",
+        "Installments",
+        "Simple & Compound Interest"
+      ],
+      "Mixtures & Solutions": [
+        "Alligation - Three Solutions",
+        "Mixture of Mixtures",
+        "Replacement of Solution",
+        "Weighted Average of Concentrations"
+      ],
+      "Profit & Loss": [
+        "Fake Weights",
+        "Partnership & Profit Sharing",
+        "SP - CP - Discount - Marked Price",
+        "Successive Profit & Loss"
+      ],
+      "Time & Work": [
+        "Tank - Pipes",
+        "Work - Efficiency"
+      ],
+      "Time, Speed & Distance": [
+        "Average Speed",
+        "Boats & Streams",
+        "Circular Tracks",
+        "Clocks - Relative Velocity",
+        "Escalators",
+        "Linear Tracks",
+        "Relative Velocity",
+        "Speed - Distance - Time",
+        "Trains",
+        "m-s to km-hr Conversion"
+      ]
+    },
+    "Geometry": {
+      "Geometry": [
+        "Angles - Transversal & Parallel Lines",
+        "Angles Subtended on a Circle",
+        "Characteristics of Four Quadrants",
+        "Circle - Chord Properties",
+        "Circle - Formulae",
+        "Coordinate Geometry - Circle & Triangle",
+        "Coordinate Geometry - Straight Lines",
+        "Number of Triangles - Given Perimeter",
+        "Pick's Theorem",
+        "Properties of Hexagon & Octagon",
+        "Properties of Polygons",
+        "Properties of Quadrilaterals",
+        "Properties of Tangents & Chords in a Circle",
+        "Quadrilateral - Areas & Properties",
+        "Similarity & Congruency of Triangles",
+        "Solids - Volume",
+        "Surface Area of Solids",
+        "Tangents on a Circle",
+        "Triangles - Area of Types of Triangles",
+        "Triangles - Area through Inradius & Circumradius",
+        "Triangles - Area",
+        "Triangles - Centroid, Circumradius & Inradius",
+        "Triangles - Key Terms",
+        "Triangles - Theorems",
+        "Triangles Basics",
+        "Trigonometry - Formulas & Properties",
+        "Trigonometry - Geometry"
+      ]
+    },
+    "Number System": {
+      "Number Systems": [
+        "Base System",
+        "Basics of Factorial",
+        "Chinese Remainder Theorem",
+        "Cyclicity",
+        "Divisibility Rules for Power Expressions",
+        "Divisibility by Different Numbers",
+        "Euler Totient",
+        "HCF & LCM",
+        "Highest Power of a Number in a Factorial",
+        "Last Non-Zero Digit for Factorials",
+        "Number of Trailing Zeros",
+        "Properties of Factors",
+        "Remainder Properties",
+        "Remainder Theorems"
+      ]
+    },
+    "Probability": {
+      "Probability & Combinatorics": [
+        "Arrangement with Repetitions",
+        "Arrangement, Permutation & Combination Formulas",
+        "Basic Counting",
+        "Basic Probability",
+        "Bayes Theorem",
+        "Binomial Theorem",
+        "Circular Arrangement",
+        "Derangements",
+        "Expected Value",
+        "Fundamental Principle of Probability Theory",
+        "Number of Integral Solutions",
+        "Partitioning",
+        "Pigeonhole Principle",
+        "Probability Formulas",
+        "Rank of a Word"
+      ],
+      "Venn Diagrams": [
+        "2 Set Venn Diagram",
+        "3 Set Venn Diagram",
+        "Sets - Properties"
+      ]
+    }
+  }
+}
